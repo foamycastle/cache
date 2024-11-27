@@ -11,28 +11,6 @@ abstract class Cache implements CacheApi
     protected bool $lastOpSuccess;
     protected Throwable $previousError;
 
-    /**
-     * Check is the repository location is readable
-     * @return bool
-     */
-    abstract protected function findRepositoryDir():bool;
-
-    /**
-     * Check if the repository location is writeable
-     * @return bool
-     */
-    abstract protected function verifyRepositoryDir():bool;
-
-    /**
-     * @return bool
-     */
-    abstract protected function createRepositoryDir():bool;
-
-    /**
-     * Return the path to the repository
-     * @return string
-     */
-    abstract protected function getRepositoryDir():string;
 
     /**
      * Open a repository item.  If it does not exist, create it

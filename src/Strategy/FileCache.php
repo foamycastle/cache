@@ -167,7 +167,10 @@ class FileCache extends Cache
 
     function clear(): bool
     {
-        // TODO: Implement clear() method.
+        $dirList=glob($this->getRepositoryDir().DIRECTORY_SEPARATOR."*.cache");
+        return array_walk($dirList,function(&$item){
+            $this->delete($item);
+        });
     }
 
     public static function At(string $location):CacheApi

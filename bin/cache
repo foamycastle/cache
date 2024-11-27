@@ -1,0 +1,18 @@
+#!/usr/bin/php
+<?php
+
+include 'vendor/autoload.php';
+
+use Foamycastle\Cachual\CacheStrategy;
+use Foamycastle\Cachual\Strategy\FileCache;
+use FoamyCastle\UUID\UUIDBuilder;
+
+
+$cache = CacheStrategy::Create(FileCache::class,'/tmp');
+
+//$cache->set('corkcle', "LARGE CONTRACT FULL OF FOAMYCASTLE");
+print_r ($cache->getAll('corkcle'));
+if($cache->previousError()) {
+    echo $cache->previousError()->getMessage();
+}
+echo PHP_EOL;

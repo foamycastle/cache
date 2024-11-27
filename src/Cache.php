@@ -3,27 +3,29 @@
 namespace Foamycastle\Cachual;
 
 use Exception;
+use Foamycastle\Collection\Collection;
 use Throwable;
 
 abstract class Cache implements CacheApi
 {
-    protected string $location;
     protected bool $lastOpSuccess;
     protected Throwable $previousError;
+
+    protected Collection $cacheItems;
 
 
     /**
      * Open a repository item.  If it does not exist, create it
      * @return resource|false
      */
-    abstract protected function openOrCreateRepositoryItem(string $name):mixed;
+    abstract protected function openOrCreateRepositoryItem(string $mode='r'):mixed;
 
     /**
      * Retrieve the repository item
      * @param string $name the key by which the item is identified
      * @return mixed
      */
-    abstract protected function openRepositoryItem(string $name):mixed;
+    abstract protected function openRepositoryItem(string $mode='r'):mixed;
 
     /**
      * Close the resource used to read and write to the repository item
@@ -38,6 +40,12 @@ abstract class Cache implements CacheApi
      * @return bool
      */
     abstract protected function isTTLExpired(\SplObjectStorage $item):bool;
+
+    /**
+     * Build the URI that identifies the repository location
+     * @return string
+     */
+    abstract protected function buildRepositoryPath():string;
 
     function success(): bool
     {

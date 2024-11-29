@@ -8,7 +8,7 @@ interface CacheItemApi
     /**
      * Sets data in the cache item
      * @param scalar $data
-     * @return bool TRUE if the put operation was successful
+     * @return bool TRUE if the put operation was successful, FALSE if the operation could not be completed
      */
     function setData(float|array|bool|int|string $data): bool;
 
@@ -36,4 +36,5 @@ interface CacheItemApi
      * @return string
      */
     function getType():string;
+
 }
